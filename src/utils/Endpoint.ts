@@ -1,27 +1,11 @@
-import { Base } from "../api/base";
+import Base from "../api/base";
 
-function Endpoint(
-	value: new (...args) => any,
-	context: ClassDecoratorContext
-): void;
-function Endpoint(name: string): (...args) => void;
-function Endpoint(...args) {
-	let name;
+function Endpoint(_, context: ClassFieldDecoratorContext) {
+	return function (initValue: any) {
+		initValue.prototype.url += `${this.url}/${String(context.name).toLowerCase()}`;
 
-	const fn = (value: typeof Base) => {
-		value.prototype.url += `/${name.toLowerCase()}`;
-		console.log(value.prototype.url);
+		return new initValue();
 	};
-
-	if (typeof args[0] == "function") {
-		name = args[0].name;
-		fn(args[0]);
-	} else
-		return (v) => {
-			name = args[0];
-
-			fn(v);
-		};
 }
 
 export default Endpoint;

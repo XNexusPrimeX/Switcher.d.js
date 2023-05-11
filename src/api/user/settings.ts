@@ -1,14 +1,14 @@
-import Endpoint from "../../utils/Endpoint";
-import User from ".";
+import Base from "../base";
+import fetch from "../../utils/Fetch";
 
-@Endpoint("userr")
-class Settings extends User {
-	getTheme() {}
+class Settings extends Base {
+	async getTheme() {
+		const theme: "light" | "dark" = await (await fetch(Settings.url)).json();
+
+		return theme
+	}
 
 	setTheme() {}
 }
 
-console.log("settings");
-console.log(new Settings().url);
-
-export default Settings;
+export default Settings.preInstancie();

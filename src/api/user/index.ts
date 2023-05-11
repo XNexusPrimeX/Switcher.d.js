@@ -1,13 +1,10 @@
-import { Base } from "../base";
 import Endpoint from "../../utils/Endpoint";
+
+import Base from "../base";
 import Settings from "./settings";
 
-@Endpoint
 class User extends Base {
-	settings: Settings;
+	@Endpoint settings = Settings
 }
 
-console.log("user");
-console.log(new User().url);
-
-export default User;
+export default User.preInstancie();
