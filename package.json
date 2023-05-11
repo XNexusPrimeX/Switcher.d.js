@@ -5,10 +5,12 @@
 	"license": "MIT",
 	"dependencies": {
 		"react": "^18.2.0",
+		"ts-node": "^10.9.1",
+		"tsconfig-paths": "^4.2.0",
 		"tsx": "^3.12.7",
 		"typescript": "^5.0.4"
 	},
 	"scripts": {
-		"test": "clear && tsx"
+		"test": "ts-node -r tsconfig-paths/register src/client/"
 	}
 }

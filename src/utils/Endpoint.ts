@@ -1,11 +1,29 @@
-import Base from "../api/base";
+import Base from "../client/base";
 
-function Endpoint(_, context: ClassFieldDecoratorContext) {
-	return function (initValue: any) {
-		initValue.prototype.url += `${this.url}/${String(context.name).toLowerCase()}`;
+function Endpoint(name: string): any;
+function Endpoint(_, context: ClassFieldDecoratorContext): any;
+function Endpoint(...args) {
+	if (typeof args[0] !== "string") {
+		const [_, context] = args as [any, ClassFieldDecoratorContext];
 
-		return new initValue();
-	};
+		return function (this: any, initValue: any) {
+			const name = String(context.name).toLowerCase();
+
+			initValue.prototype.url = `${this.url}/${name}`;
+			initValue = new initValue();
+
+			return initValue;
+		};
+	} else {
+		return (_, context) => {
+			return function (this: any, initValue: any) {
+				initValue.prototype.url = `${this.url}/${args[0]}`;
+				initValue = new initValue();
+
+				return initValue;
+			};
+		};
+	}
 }
 
 export default Endpoint;
