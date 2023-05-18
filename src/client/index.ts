@@ -4,14 +4,23 @@ import Base from "./base";
 import UserManager from "./user";
 
 class Client extends Base {
-	url = "https://discord.com/api";
-
+	protected url = "https://discord.com/api";
 	@Endpoint("users/@me") user = UserManager;
 
-	constructor(token: string) {
-		super();
+	static run(token: string) {
+		return new Promise<Client>(async (resolve) => {
+			Base.token = token;
+			const instance = new this();
+			await waitFor(() => instance.isReady);
 
-		Base.token = token;
+			resolve(instance);
+
+			function waitFor(variable) {
+				return new Promise<void>((resolve) => {
+					setInterval(() => variable() && resolve(), 100);
+				});
+			}
+		});
 	}
 }
 

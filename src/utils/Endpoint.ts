@@ -1,5 +1,3 @@
-import Base from "../client/base";
-
 function Endpoint(name: string): any;
 function Endpoint(_, context: ClassFieldDecoratorContext): any;
 function Endpoint(...args) {
@@ -19,6 +17,7 @@ function Endpoint(...args) {
 			return function (this: any, initValue: any) {
 				initValue.prototype.url = `${this.url}/${args[0]}`;
 				initValue = new initValue();
+				initValue.fetch();
 
 				return initValue;
 			};
