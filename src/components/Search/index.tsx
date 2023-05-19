@@ -13,7 +13,7 @@ const SearchModal: React.FC = () => {
 	return (
 		<TransparentModal>
 			<Input value={text} onChange={handleText} />
-			<AutoComplete find={text} />
+			<AutoComplete input={text} />
 		</TransparentModal>
 	);
 };

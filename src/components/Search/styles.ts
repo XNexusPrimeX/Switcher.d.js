@@ -7,8 +7,8 @@ export const TransparentModal = styled.div`
 `;
 
 export const Input = styled.input`
-	width: 325px;
-	height: 42px;
+	width: 530px;
+	height: 70px;
 
 	background: #303030;
 	border-radius: 10px;
@@ -18,7 +18,7 @@ export const Input = styled.input`
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 400;
-	font-size: 12px;
+	font-size: 15px;
 	line-height: 15px;
 	padding: 0 25px;
 `;

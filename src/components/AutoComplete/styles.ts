@@ -7,12 +7,16 @@ export const CompletionContainer = styled.div`
 	max-height: 120px;
 	width: 280px;
 	overflow: hidden;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+	/* border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px; */
 `;
 
 export const ItemContainer = styled.div`
 	width: 100%;
-	height: 20px;
-	background-color: aliceblue;
+	height: 45px;
+	background-color: #1e1f22;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 `;

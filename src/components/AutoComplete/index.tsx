@@ -1,25 +1,39 @@
 import React from "react";
 import { CompletionContainer, ItemContainer } from "./styles";
 
-const CompletionItem: React.FC<{ value: string }> = ({ value }) => {
+import { CiSliderVertical } from "react-icons/ci";
+
+const CompletionItem: React.FC<{ icon; value: string }> = ({
+	icon: Icon,
+	value,
+}) => {
 	return (
 		<ItemContainer>
-			<h1>{value}</h1>
+			<Icon />
+			<p>{value}</p>
 		</ItemContainer>
 	);
 };
 
-const AutoComplete: React.FC<{ find: string }> = ({ find }) => {
-	const allResults = ["oi", "tchau"];
+const AutoComplete: React.FC<{ input: string }> = ({ input }) => {
+	const allItems = ["Alternar Tema", "tchau"];
 
-	const filtered = allResults.filter(
-		(r) => find.length > 0 && r.includes(find)
+	/**
+	 * icon
+	 * value
+	 * execute
+	 */
+
+	input = input.toLowerCase();
+
+	const filteredItems = allItems.filter(
+		(r) => input.length > 0 && r.toLowerCase().includes(input)
 	);
 
 	return (
 		<CompletionContainer>
-			{filtered.map((i) => (
-				<CompletionItem value={i} />
+			{filteredItems.map((i) => (
+				<CompletionItem icon={CiSliderVertical} value={i} />
 			))}
 		</CompletionContainer>
 	);
